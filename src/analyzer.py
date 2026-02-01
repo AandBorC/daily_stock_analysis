@@ -11,6 +11,7 @@ A股自选股智能分析系统 - AI分析层
 """
 
 import json
+import os
 import logging
 import time
 from dataclasses import dataclass
@@ -436,6 +437,37 @@ class GeminiAnalyzer:
         self._using_fallback = False  # 是否正在使用备选模型
         self._use_openai = False  # 是否使用 OpenAI 兼容 API
         self._openai_client = None  # OpenAI 客户端
+        
+        # 添加 Ollama 支持
+        self._init_ollama()
+    
+        # 优先级: Gemini > Ollama > OpenAI
+        if not self._model and not self._openai_client:
+            logger.warning("未配置任何 AI API Key, AI 分析功能将不可用")
+
+    def _init_ollama(self) -> None:
+        """初始化 Ollama (本地模型)"""
+        config = get_config()
+    
+        # 检查是否配置了 Ollama
+        if not os.getenv('USE_OLLAMA', '').lower() == 'true':
+            return
+    
+        try:
+            from openai import OpenAI
+        
+            self._openai_client = OpenAI(
+                api_key="ollama",  # 占位
+                base_url=config.ollama_base_url,
+            )
+            self._current_model_name = config.ollama_model
+            self._use_openai = True
+        
+            logger.info(f"Ollama 初始化成功 (base_url: {config.ollama_base_url}, model: {config.ollama_model})")
+        except ImportError:
+            logger.error("未安装 openai 库,请运行: pip install openai")
+        except Exception as e:
+            logger.error(f"Ollama 初始化失败: {e}")
         
         # 检查 Gemini API Key 是否有效（过滤占位符）
         gemini_key_valid = self._api_key and not self._api_key.startswith('your_') and len(self._api_key) > 10

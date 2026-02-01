@@ -1,0 +1,49 @@
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | root                 | 日志系统初始化完成，日志目录: /app/logs
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | root                 | 常规日志: logs/stock_analysis_20260129.log
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | root                 | 调试日志: logs/stock_analysis_debug_20260129.log
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | ============================================================
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | A股自选股智能分析系统 启动
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | 运行时间: 2026-01-29 19:10:03
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | ============================================================
+stock-analyzer  | 2026-01-29 19:10:03 | WARNING  | __main__             | 提示：未配置 Gemini API Key，将使用 OpenAI 兼容 API
+stock-analyzer  | 2026-01-29 19:10:03 | WARNING  | __main__             | 提示：未配置搜索引擎 API Key (Bocha/Tavily/SerpAPI)，新闻搜索功能将不可用
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | web.server           | WebUI 已启动: http://0.0.0.0:8000
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | 模式: 仅 WebUI 服务
+stock-analyzer  | WebUI 已启动: http://0.0.0.0:8000
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | WebUI 运行中: http://0.0.0.0:8000
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | 通过 /analysis?code=xxx 接口手动触发分析
+stock-analyzer  | 2026-01-29 19:10:03 | INFO     | __main__             | 按 Ctrl+C 退出...
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | web.services         | [AnalysisService] 已提交股票 600519 的分析任务, task_id=600519_20260129_191126_338287, report_type=simple
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | web.services         | [AnalysisService] 开始分析股票: 600519
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.storage          | 数据库初始化完成: sqlite:////app/data/stock_analysis.db
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | data_provider.tushare_fetcher | Tushare API 初始化成功
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | data_provider.tushare_fetcher | ✅ 检测到 TUSHARE_TOKEN 且 API 初始化成功，Tushare 数据源优先级提升为最高 (Priority 0)
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | data_provider.base   | 已初始化 5 个数据源（按优先级）: EfinanceFetcher(P0), TushareFetcher(P0), AkshareFetcher(P1), BaostockFetcher(P3), YfinanceFetcher(P4)
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.analyzer         | Gemini API Key 未配置，尝试使用 OpenAI 兼容 API
+stock-analyzer  | 2026-01-29 19:11:26 | WARNING  | src.analyzer         | 未配置任何 AI API Key，AI 分析功能将不可用
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.notification     | 已配置 1 个通知渠道：邮件
+stock-analyzer  | 2026-01-29 19:11:26 | WARNING  | src.search_service   | 未配置任何搜索引擎 API Key，新闻搜索功能将不可用
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.core.pipeline    | 调度器初始化完成，最大并发数: 1
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.core.pipeline    | 已启用趋势分析器 (MA5>MA10>MA20 多头判断)
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.core.pipeline    | 实时行情已启用 (优先级: akshare_sina,tencent,efinance,akshare_em)
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.core.pipeline    | 筹码分布分析已启用
+stock-analyzer  | 2026-01-29 19:11:26 | WARNING  | src.core.pipeline    | 搜索服务未启用（未配置 API Key）
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.core.pipeline    | ========== 开始处理 600519 ==========
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | src.core.pipeline    | [600519] 今日数据已存在，跳过获取（断点续传）
+stock-analyzer  | 2026-01-29 19:11:26 | INFO     | data_provider.akshare_fetcher | [API调用] 新浪财经接口获取 600519 实时行情...
+stock-analyzer  | 2026-01-29 19:11:31 | INFO     | data_provider.akshare_fetcher | [实时行情-新浪] 600519 贵州茅台: 价格=1437.72, 涨跌=8.61%
+stock-analyzer  | 2026-01-29 19:11:31 | INFO     | data_provider.base   | [实时行情] 600519 成功获取 (来源: akshare_sina)
+stock-analyzer  | 2026-01-29 19:11:31 | INFO     | src.core.pipeline    | [600519] 贵州茅台 实时行情: 价格=1437.72, 量比=None, 换手率=None% (来源: akshare_sina)
+stock-analyzer  | 2026-01-29 19:11:37 | INFO     | data_provider.akshare_fetcher | [API调用] ak.stock_cyq_em(symbol=600519) 获取筹码分布...
+stock-analyzer  | 2026-01-29 19:11:37 | INFO     | data_provider.akshare_fetcher | [API返回] ak.stock_cyq_em 成功: 返回 90 天数据, 耗时 0.79s
+stock-analyzer  | 2026-01-29 19:11:37 | INFO     | data_provider.akshare_fetcher | [筹码分布] 600519 日期=2026-01-29: 获利比例=48.5%, 平均成本=1439.07, 90%集中度=7.37%, 70%集中度=3.50%
+stock-analyzer  | 2026-01-29 19:11:37 | INFO     | src.core.pipeline    | [600519] 筹码分布: 获利比例=48.5%, 90%集中度=7.37%
+stock-analyzer  | 2026-01-29 19:11:38 | INFO     | src.core.pipeline    | [600519] 搜索服务不可用，跳过情报搜索
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.core.pipeline    | [600519] 分析完成: 持有, 评分 50
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.core.pipeline    | [600519] 使用精简报告格式
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.notification     | 正在向 1 个渠道发送通知：邮件
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.notification     | 自动识别邮箱类型: qq.com -> smtp.qq.com:465
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.notification     | 邮件发送成功，收件人: ['2579808182@qq.com']
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.notification     | 通知发送完成：成功 1 个，失败 0 个
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | src.core.pipeline    | [600519] 单股推送成功
+stock-analyzer  | 2026-01-29 19:11:40 | INFO     | web.services         | [AnalysisService] 股票 600519 分析完成: 持有

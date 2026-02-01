@@ -154,6 +154,10 @@ class Config:
     retry_base_delay: float = 1.0
     retry_max_delay: float = 30.0
     
+    # === Ollama 配置 ===
+    ollama_base_url: str = "http://localhost:11434/v1"
+    ollama_model: str = "qwen2.5-coder:14b"
+    
     # === WebUI 配置 ===
     webui_enabled: bool = False
     webui_host: str = "127.0.0.1"
@@ -337,6 +341,9 @@ class Config:
             webui_enabled=os.getenv('WEBUI_ENABLED', 'false').lower() == 'true',
             webui_host=os.getenv('WEBUI_HOST', '127.0.0.1'),
             webui_port=int(os.getenv('WEBUI_PORT', '8000')),
+            # Ollama 配置
+            ollama_base_url=os.getenv('OLLAMA_BASE_URL', 'http://localhost:11434/v1'),
+            ollama_model=os.getenv('OLLAMA_MODEL', 'qwen2.5-coder:14b'),
             # 机器人配置
             bot_enabled=os.getenv('BOT_ENABLED', 'true').lower() == 'true',
             bot_command_prefix=os.getenv('BOT_COMMAND_PREFIX', '/'),
